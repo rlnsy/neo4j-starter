@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    build: custom/neo4j
+    ports:
+      - 7687:7687
+  shell:
+    depends_on:
+      - db
+    build: custom/cypher
+    tty: true
+    stdin_open: true
+    # loads data through cypher queries and opens a new shell session
+    command: bash -c "sh ./load.sh && sh ./connect.sh"

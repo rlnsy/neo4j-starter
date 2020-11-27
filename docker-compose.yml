@@ -5,6 +5,8 @@ services:
     build: custom/neo4j
     ports:
       - 7687:7687
+    volumes:
+      - ./data:/data
   shell:
     depends_on:
       - db
